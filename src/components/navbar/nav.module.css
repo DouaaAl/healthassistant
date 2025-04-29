@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--middle-blue);
+    color: white;
+    z-index: 5;
+}
+
+.header ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header ul li a {
+    color: white;
+    font-weight: 800;
+}

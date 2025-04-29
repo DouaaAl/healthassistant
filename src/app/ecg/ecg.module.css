@@ -1,0 +1,57 @@
+.ecg {
+    background: rgba(255, 154, 154, 0.5);
+    min-height: calc(100vh - 5.43rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+.title {
+    color: #F09B13;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.checkup {
+    width: 90%;
+    margin: 3rem auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex h2 {
+    color: #F09B13;
+    font-size: 2.3rem;
+}
+
+.flex h4 {
+    color: #1CBB9B;
+}
+
+.flex h4 span {
+    color: #F09B13;
+}
+
+.ecg button {
+    width: 250px;
+    height: 60px;
+    font-size: 2.2rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: 800;
+}
+
+.blue {
+    color: #18AECD;
+}
+
+.orange {
+    color: #FF7373;
+}

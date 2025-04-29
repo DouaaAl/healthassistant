@@ -1,0 +1,57 @@
+.oxy {
+    background: rgba(19, 161, 226, 0.5);
+    min-height: calc(100vh - 5.43rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+.title {
+    color: #47ab05;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.checkup {
+    width: 90%;
+    margin: 3rem auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex h2 {
+    color: #b81882;
+    font-size: 2.3rem;
+}
+
+.flex h4 {
+    color: #05876d;
+}
+
+.flex h4 span {
+    color: #935b02;
+}
+
+.oxy button {
+    width: 250px;
+    height: 60px;
+    font-size: 2.2rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: 800;
+}
+
+.blue {
+    color: #18AECD;
+}
+
+.orange {
+    color: #FF7373;
+}
