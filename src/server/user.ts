@@ -54,7 +54,7 @@ export async function checkDoctorMetadata(): Promise<boolean> {
       }
   
       // Update Clerk metadata
-      await clerkClient.users.updateUser(user.id, {
+      await clerkClient?.users?.updateUser(user.id, {
         privateMetadata: {
           doctor: isDoctor,
         },

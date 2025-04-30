@@ -8,7 +8,8 @@ const nav = () => {
   const [noMetaData, setNoMetaData] = useState(false);
 
   const changeUserInfo = async(isDoctor: boolean) =>{
-    let res = await setDoctorMetadata(true);
+    let res = await setDoctorMetadata(isDoctor);
+    setNoMetaData(false);
   }
   const checkIsDoc = async()=>{
     let res = await checkDoctorMetadata();
