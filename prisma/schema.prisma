@@ -1,0 +1,168 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  name            String
+  isDoctor        Boolean          @default(false)
+  createdAt       DateTime         @default(now())
+  clerkId         String           @unique
+
+  // Relations
+  temperatureData Temperature[]
+  ecgData         ECG[]
+  heartbeatData   Heartbeat[]
+  oxygenData      Oxygen[]
+  reviews         Review[]
+  sentMessages    Message[]        @relation("SentMessages")
+  receivedMessages Message[]       @relation("ReceivedMessages")
+  reservations    Reservation[]    @relation("UserReservations")
+
+  doctorProfileId String?
+
+  // Doctor-patient relationship
+  doctorPatients  DoctorPatient[]  @relation("DoctorToPatients")
+  patientDoctors  DoctorPatient[]  @relation("PatientToDoctors")
+
+  // Averages
+  averageTemperature Float?
+  averageECG          Float?
+  averageHeartbeat    Float?
+  averageOxygen       Float?
+
+  Reservation Reservation[] @relation("DoctorReservations")
+
+  DoctorProfile DoctorProfile[]
+}
+
+model Temperature {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  value     Float
+  timestamp DateTime
+
+  year      Int
+  month     Int
+  day       Int
+  hour      Int
+  minute    Int
+  second    Int
+}
+
+model ECG {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  value     Float
+  timestamp DateTime
+
+  year      Int
+  month     Int
+  day       Int
+  hour      Int
+  minute    Int
+  second    Int
+}
+
+model Heartbeat {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  bpm       Int
+  timestamp DateTime
+
+  year      Int
+  month     Int
+  day       Int
+  hour      Int
+  minute    Int
+  second    Int
+}
+
+model Oxygen {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  percentage Float
+  timestamp  DateTime
+
+  year       Int
+  month      Int
+  day        Int
+  hour       Int
+  minute     Int
+  second     Int
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  rating    Int      @default(5)
+  text      String
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+  senderId    String
+  receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  receiverId  String
+
+  text        String
+  sentAt      DateTime @default(now())
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  user      User     @relation("UserReservations", fields: [userId], references: [id])
+  userId    String
+
+  doctor    User     @relation("DoctorReservations", fields: [doctorId], references: [id])
+  doctorId  String
+
+  date      DateTime
+  createdAt DateTime @default(now())
+}
+
+model DoctorProfile {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String   @unique
+
+  timeOpen     String   // e.g. "08:00"
+  timeClose    String   // e.g. "17:00"
+  availableOn  String[] // e.g. ["Monday", "Tuesday"]
+}
+
+model DoctorPatient {
+  id         String @id @default(uuid())
+
+  doctor     User   @relation("DoctorToPatients", fields: [doctorId], references: [id])
+  doctorId   String
+
+  patient    User   @relation("PatientToDoctors", fields: [patientId], references: [id])
+  patientId  String
+
+  createdAt  DateTime @default(now())
+}

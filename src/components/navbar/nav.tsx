@@ -1,8 +1,41 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import style from "./nav.module.css"
 import Image from 'next/image'
+import { checkDoctorMetadata, setDoctorMetadata, syncClerkUserToDb } from '@/server/user'
 
 const nav = () => {
+  const [noMetaData, setNoMetaData] = useState(false);
+
+  const changeUserInfo = async(isDoctor: boolean) =>{
+    let res = await setDoctorMetadata(true);
+  }
+  const checkIsDoc = async()=>{
+    let res = await checkDoctorMetadata();
+    setNoMetaData(!res);
+  }
+  const checkuser = async() =>{
+    await syncClerkUserToDb();
+    await checkIsDoc();
+  }
+  useEffect(()=>{
+    checkuser();
+  }, [])
+
+  if(noMetaData){
+    return <div>
+      <article>
+        <h1>Are You A</h1>
+        <button onClick={()=>{changeUserInfo(true)}}>
+          Doctor
+        </button>
+        <h1>Or</h1>
+        <button onClick={()=>{changeUserInfo(false)}}>
+          Patient
+        </button>
+      </article>
+    </div>
+  }
   return (
     <header className={style.header}>
         <h1>Health Assistant</h1>

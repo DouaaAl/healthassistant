@@ -1,5 +1,16 @@
+"use client"
 import "./globals.css";
 import Nav from "@/components/navbar/nav";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+
+
 
 
 export default function RootLayout({
@@ -8,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <Nav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Nav />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
