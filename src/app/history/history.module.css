@@ -1,0 +1,55 @@
+.history {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 80px;
+}
+
+.averages {
+  margin-bottom: 20px;
+}
+
+.averages p {
+  margin: 5px 0;
+}
+
+.historySection {
+  margin-bottom: 30px;
+}
+
+.history table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.history th,.history td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.history th {
+  background-color: #f5f5f5;
+  text-align: left;
+}

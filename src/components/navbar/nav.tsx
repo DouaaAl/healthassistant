@@ -17,10 +17,8 @@ const nav = () => {
   }
   const checkuser = async() =>{
     await syncClerkUserToDb();
-    await checkIsDoc();
   }
   useEffect(()=>{
-    checkuser();
   }, [])
 
   if(noMetaData){
@@ -41,11 +39,10 @@ const nav = () => {
     <header className={style.header}>
         <h1>Health Assistant</h1>
         <ul>
-            <li><a href="">Find A Doctor</a></li>
-            <li><a href="">ECG Problems</a></li>
-            <li><a href="">Blood Oxygene</a></li>
-            <li><a href="">Health History</a></li>
-            <li><a href="">
+            <li><a href="/">Find A Doctor</a></li>
+            <li><a href="/ecg">ECG Problems</a></li>
+            <li><a href="/blood">Blood Oxygene</a></li>
+            <li><a href="/history">
                 <Image
                 src={"/images/profile.png"}
                 height={50}
